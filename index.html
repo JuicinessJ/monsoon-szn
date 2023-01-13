@@ -8,16 +8,75 @@
     <title>Weather App</title>
 </head>
 <body>
-    <main>
-        <div class="container">
+    <main class="bg-secondary rounded-lg container-fluid">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col text-center"><h1>The Weather App</h1></div>
             </div>
         </div>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row text-center">
-                <div class="col-4">col-4</div>
-                <div class="col-8">col-8</div>
+                <div class="col-2" id="search">Search for a City:
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Minneapolis">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary bg-danger" type="button" id="button-addon2">Search</button>
+                        </div>
+                    </div>
+                    <div class="list-group">
+                        <button type="button" class="list-group-item list-group-item-action" id="city1"> The current button</button>
+                        <button type="button" class="list-group-item list-group-item-action" id="city2">A second item</button>
+                        <button type="button" class="list-group-item list-group-item-action" id="city3">A third button item</button>
+                        <button type="button" class="list-group-item list-group-item-action" id="city4">A fourth button item</button>
+                        <button type="button" class="list-group-item list-group-item-action" id="city5">A disabled button item</button>
+                        <button type="button" class="list-group-item list-group-item-action" id="city6">A disabled button item</button>
+                        <button type="button" class="list-group-item list-group-item-action" id="city7">A disabled button item</button>
+                        <button type="button" class="list-group-item list-group-item-action" id="city8">A disabled button item</button>
+                    </div>
+                </div>
+                <div class="jumbotron jumbotron-fluid col-10 bg-white rounded-lg">
+                    <div class="container-fluid border border-secondary rounded-lg">
+                        <h1 class="display-4">Fluid jumbotron</h1>
+                        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col text-center"><h3>Next 5 Days Forecast:</h3></div>
+                            <div class="card-deck">
+                                <div class="card">
+                                    <div class="card-body shadow bg-white rounded-lg">
+                                        <h5 class="card-title">Day 1:</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body shadow bg-white rounded-lg">
+                                        <h5 class="card-title">Day 2:</h5>
+                                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body shadow bg-white rounded-lg">
+                                        <h5 class="card-title">Day 3:</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body shadow bg-white rounded-lg">
+                                        <h5 class="card-title">Day 4:</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body shadow bg-white rounded-lg">
+                                        <h5 class="card-title">Day 5:</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
