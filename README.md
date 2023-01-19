@@ -2,9 +2,7 @@
 
 ## Description
 
-The Weather App which displays information about 
-
-The motivation of this was to develop a test to see how "Minnesotan" the taker is. 
+The Weather App displays information about a city such as weather report, temperature, wind speed and humidity.
 
 ## Table of Contents
 
@@ -21,13 +19,11 @@ Open Github > Hit Green "Code" Button > Inside the Clone drop down box select me
 
 # Usage
 
-![group](./assets/Start.PNG)
-![group](./assets/Question.PNG)
-![group](./assets/Score.PNG)
+![group](./assets/img/Capture.PNG)
 
 # Credits
 
-Previous assignments and my tutor Andrew. 
+Used old and previous contents with other outside resources such as google with led to W3, Mozilla, StackOverFlow, and documentations. Also received helped from Andrew.
 
 # License
 
@@ -55,9 +51,8 @@ SOFTWARE.
 
 # Feature
 
-A Quiz game about Minnesota.
+An App which ask for a city then displays information of that city.
 
 # Issue
 
-For this to run smoothly would require to clear local storage after or before using.
-There may be a chance of duplication of attempts found no fix yet, Was going to implement a duplication finder but decided not to.
+Due to using that API which only counts up to 40. I was not able to get the 5th day information. Which means the jumbotron and first card will have the same information. Tried finding a fix by adding a parameter for the API URL using "&cnt=41" and had no luck. Spent a few minutes only probably could find a fix if had used a different API or newer version than 2.5.

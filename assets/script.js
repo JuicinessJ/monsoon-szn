@@ -70,8 +70,8 @@ function weatherPull(lat, lon) {
             //incremental jump
             weatherReport = [];
             for (let x = 0; x <= 32; x += 8) {
+                let day = dayjs(data.list[x].dt * 1000).format('MM-DD');
                 console.log(data.list[x].dt);
-                let day = dayjs(data.list[x].dt).format('MM-DD');
                 console.log(day);
                 weatherReport.push(
                     {
