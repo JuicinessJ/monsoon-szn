@@ -7,44 +7,47 @@ let searchHistory = [];
 let weatherReport = [];
 let searchAttempts = 0;
 
-
-
 function displayWeather() {
     /* Goal: Display information about weather report */
 
     //jumbo
-    console.log(weatherReport);
+    let img = document.getElementById('img');
+    img.src = `http://openweathermap.org/img/wn/${weatherReport[0].icons}@2x.png`
+
     let jumbotron = document.getElementById('jumbotron');
-    jumbotron.innerHTML = 'Date: ' + weatherReport[1].date;
+    jumbotron.innerHTML = 'Date: ' + weatherReport[0].date;
 
     let jumboTemp = document.getElementById('jumboTemp');
-    jumboTemp.innerHTML = 'Temp: ' + weatherReport[1].temp + '°F';
+    jumboTemp.innerHTML = 'Temp: ' + weatherReport[0].temp + '°F';
 
     let jumboWind = document.getElementById('jumboWind');
-    jumboWind.innerHTML = 'Wind: ' + weatherReport[1].wind + 'mph';
+    jumboWind.innerHTML = 'Wind: ' + weatherReport[0].wind + 'mph';
 
     let jumboHumid = document.getElementById('jumboHumid');
-    jumboHumid.innerHTML = 'Humidity: ' + weatherReport[1].humidity + '%';
+    jumboHumid.innerHTML = 'Humidity: ' + weatherReport[0].humidity + '%';
 
     //cards
     let cards = document.getElementById('cards');
     for (let x = 0; x < 5; x++) {
-        let day = cards.children[x].children[0].children[0];
+        let img = cards.children[x].children[0].children[0];
+        img.src = `http://openweathermap.org/img/wn/${weatherReport[x].icons}@2x.png`;
+
+        let day = cards.children[x].children[0].children[1];
         day.innerHTML = 'Date: ' + weatherReport[x].date;
 
-        let temp = cards.children[x].children[0].children[1];
+        let temp = cards.children[x].children[0].children[2];
         temp.innerHTML = 'Temp: ' + weatherReport[x].temp + '°F';
 
-        let wind = cards.children[x].children[0].children[2];
+        let wind = cards.children[x].children[0].children[3];
         wind.innerHTML = 'Wind: ' + weatherReport[x].wind + 'mph';
 
-        let humid = cards.children[x].children[0].children[3];
+        let humid = cards.children[x].children[0].children[4];
         humid.innerHTML = 'Humidity: ' + weatherReport[x].humidity + '%';
     }
 
     //list
     let list = document.getElementById('list');
-    for (let x = 0; x <= searchAttempts; x++) {
+    for (let x = 0; x < searchHistory.length; x++) {
         let city = list.children[x];
         city.innerHTML = searchHistory[x];
     }
@@ -64,53 +67,43 @@ function weatherPull(lat, lon) {
         })
         .then(function(data) {
             console.log(data);
-            //incremental jump, need to change this tester into using 12PM only. Might need to use UNIX
+            //incremental jump
+            weatherReport = [];
             for (let x = 0; x <= 32; x += 8) {
-                // console.log(data.list[x]);
-
-                //obj array of weather report, need to fix
-                // localStorage.removeItem(weather)
-                weatherReport = JSON.parse(localStorage.getItem('weather')) || [];
+                console.log(data.list[x].dt);
+                let day = dayjs(data.list[x].dt).format('MM-DD');
+                console.log(day);
                 weatherReport.push(
                     {
-                        date: data.list[x].dt_txt,
+                        icons: data.list[x].weather[0].icon,
+                        date: day,
                         weather: data.list[x].weather[0].main,
                         temp: data.list[x].main.temp,
                         humidity: data.list[x].main.humidity,
                         wind: data.list[x].wind.speed
                     }
                 );
-                localStorage.setItem('weather', JSON.stringify(weatherReport));
             };
+            console.log(weatherReport);
+            displayWeather();
         });
-        displayWeather();
 }
 
-function latlonLocator() {
+function latlonLocator(city) {
     /* Goal : To get lat and lon for second api fetch at the same time update the searchHistory arr to store recently searched cities
     for quick access. */
-
-    //ticker
-    searchAttempts++;
-
-    //clear local
-    localStorage.removeItem('weather');
 
     // local storage search values
     localStorage.setItem('city', search.value);
 
     // set history
     let history = localStorage.getItem('city')
-    searchHistory.push(history);
-    // localStorage.setItem('city', JSON.stringify(searchHistory));
-
-    //need to create an array to store search history
-    console.log(searchHistory);
-
-    // console.log(searchHistory);
+    if (!searchHistory.includes(history))
+    {
+        searchHistory.push(history);
+    }
 
     //first API fetch to find lat/lon
-    let city = localStorage.getItem('city');
     let latlonURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${APIKey}`;
     fetch(latlonURL)
     .then(function(response) {
@@ -122,4 +115,12 @@ function latlonLocator() {
     })
 }
 
-button.addEventListener('click', latlonLocator);
+button.addEventListener('click', function() {
+    let city = search.value;
+    latlonLocator(city);
+});
+
+list.addEventListener('click', function(event) {
+    let city = event.target.textContent;
+    latlonLocator(city);
+})
