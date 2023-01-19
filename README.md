@@ -56,3 +56,4 @@ An App which ask for a city then displays information of that city.
 # Issue
 
 Due to using that API which only counts up to 40. I was not able to get the 5th day information. Which means the jumbotron and first card will have the same information. Tried finding a fix by adding a parameter for the API URL using "&cnt=41" and had no luck. Spent a few minutes only probably could find a fix if had used a different API or newer version than 2.5.
+Other issue would be that the search history does not recycle.
