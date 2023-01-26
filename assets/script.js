@@ -12,7 +12,7 @@ function displayWeather() {
 
     //jumbo
     let img = document.getElementById('img');
-    img.src = `http://openweathermap.org/img/wn/${weatherReport[0].icons}@2x.png`
+    img.src = `https://openweathermap.org/img/wn/${weatherReport[0].icons}@2x.png`
 
     let jumbotron = document.getElementById('jumbotron');
     jumbotron.innerHTML = 'Date: ' + weatherReport[0].date;
@@ -30,7 +30,7 @@ function displayWeather() {
     let cards = document.getElementById('cards');
     for (let x = 0; x < 5; x++) {
         let img = cards.children[x].children[0].children[0];
-        img.src = `http://openweathermap.org/img/wn/${weatherReport[x].icons}@2x.png`;
+        img.src = `https://openweathermap.org/img/wn/${weatherReport[x].icons}@2x.png`;
 
         let day = cards.children[x].children[0].children[1];
         day.innerHTML = 'Date: ' + weatherReport[x].date;
@@ -104,7 +104,7 @@ function latlonLocator(city) {
     }
 
     //first API fetch to find lat/lon
-    let latlonURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${APIKey}`;
+    let latlonURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${APIKey}`;
     fetch(latlonURL)
     .then(function(response) {
         return response.json();
